@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat GPT API</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="prompt">
+        <button onclick="callGPTAPI()">Call ChatGPT API</button>
+    </div>
+    <div>
+        <p id="results"></p>
+    </div>
+    <script>
+        const prompt = document.getElementById('prompt');
+        const results = document.getElementById('results');
+
+        function callGPTAPI() {
+            const options = {
+                method: 'POST',
+                // model: 'gpt-3.5-turbo',
+                headers: {
+                    'X-RapidAPI-Key': '40d8dc14c9msheb4472c6c09db9bp196c9fjsn28c7968df376',
+                    'X-RapidAPI-Host': 'openai80.p.rapidapi.com'
+                },
+                body: `{"model":"gpt-3.5-turbo","message":[{"role":"user","content":"Hello ChatGPT"}]}`
+            };
+
+            fetch('https://openai80.p.rapidapi.com/models', options)
+                .then(response => response.json())
+                .then(response => console.log(response))
+                .catch((err) => console.error(err));
+        }
+    </script>
+</body>
+
+</html>
